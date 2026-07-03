@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Louis Franvel — Business Development International</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16283D;
+    --ink-soft:#2A4258;
+    --paper:#EDE7D6;
+    --paper-bright:#F6F2E7;
+    --gold:#B08D3E;
+    --stamp:#A13D2B;
+    --line:rgba(22,40,61,0.15);
+    --font-display:'Fraunces', serif;
+    --font-body:'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--gold);color:var(--paper-bright);}
+  :focus-visible{outline:2px solid var(--stamp);outline-offset:3px;}
+
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px;}
+
+  /* ===== HERO ===== */
+  .hero{
+    background:var(--ink);
+    color:var(--paper-bright);
+    padding:64px 0 88px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(246,242,231,0.035) 0 1px, transparent 1px 64px);
+    pointer-events:none;
+  }
+  .hero-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(44px,8vw,84px);
+    line-height:0.98;
+    margin:10px 0 0;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--gold);
+  }
+  .hero-tagline{
+    font-size:19px;
+    max-width:520px;
+    margin:20px 0 0;
+    color:rgba(246,242,231,0.86);
+  }
+  .stamp{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    border:1.5px dashed rgba(176,141,62,0.7);
+    border-radius:50%;
+    width:132px;
+    height:132px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--gold);
+    transform:rotate(8deg);
+    flex-shrink:0;
+    padding:14px;
+  }
+  .hero-contact{
+    margin-top:48px;
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:rgba(246,242,231,0.75);
+  }
+  .hero-contact a:hover{color:var(--gold);}
+
+  /* ===== ROUTE (signature element) ===== */
+  .route-section{
+    padding:56px 0 8px;
+  }
+  .route-label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+  .route{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    padding:0 4px 40px;
+  }
+  .route::before{
+    content:"";
+    position:absolute;
+    top:9px;
+    left:4px;
+    right:4px;
+    height:2px;
+    background-image:linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 14px);
+    background-size:14px 2px;
+  }
+  .route-stop{
+    position:relative;
+    text-align:left;
+    flex:1;
+    padding-right:12px;
+  }
+  .route-stop:last-child{padding-right:0;}
+  .route-dot{
+    width:20px;height:20px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--ink);
+    margin-bottom:14px;
+  }
+  .route-stop.current .route-dot{
+    background:var(--stamp);
+    border-color:var(--stamp);
+  }
+  .route-city{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--stamp);
+  }
+  .route-role{
+    font-family:var(--font-display);
+    font-size:17px;
+    margin:4px 0 2px;
+    line-height:1.15;
+  }
+  .route-date{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section{padding:56px 0;border-top:1px solid var(--line);}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:36px;
+  }
+  .section-num{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--gold);
+  }
+  .section h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:32px;
+    margin:0;
+  }
+
+  /* ===== MANIFEST / EXPERIENCE ENTRIES ===== */
+  .entry{
+    display:grid;
+    grid-template-columns:170px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .entry:first-of-type{border-top:none;}
+  .entry-meta{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .entry-meta .co{
+    display:block;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:19px;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+  .entry-role{
+    font-weight:600;
+    font-size:16px;
+    margin:0 0 10px;
+  }
+  .entry ul{
+    margin:0;
+    padding-left:18px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .entry li{margin-bottom:5px;}
+  .entry li::marker{color:var(--gold);}
+
+  /* ===== SKILLS GRID ===== */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:32px;
+  }
+  .skill-card h3{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 14px;
+  }
+  .lang-row{display:flex;justify-content:space-between;font-size:14.5px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dotted var(--line);}
+  .lang-row span:last-child{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);}
+  .tag-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-family:var(--font-mono);
+    font-size:12px;
+    border:1px solid var(--line);
+    padding:5px 10px;
+    border-radius:3px;
+    color:var(--ink-soft);
+  }
+  .bar{
+    height:4px;
+    background:var(--line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:var(--ink);
+    border-radius:2px;
+  }
+  .bar-fill.gold{background:var(--gold);}
+  .skill-note{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:14px 0 0;
+    line-height:1.5;
+  }
+
+  /* ===== INTERESTS ===== */
+  .interests-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:24px;
+  }
+  .interest-card{
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:24px;
+    background:var(--paper-bright);
+  }
+  .interest-icon{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--stamp);
+    display:block;
+    margin-bottom:12px;
+  }
+  .interest-card h3{
+    font-family:var(--font-display);
+    font-size:19px;
+    font-weight:600;
+    margin:0 0 8px;
+  }
+  .interest-card p{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0;
+    line-height:1.55;
+  }
+
+  /* ===== FORMATION ===== */
+  .edu{padding:18px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .edu:first-of-type{border-top:none;}
+  .edu-title{font-weight:600;font-size:15.5px;}
+  .edu-sub{font-size:13.5px;color:var(--ink-soft);margin-top:2px;}
+  .edu-date{font-family:var(--font-mono);font-size:12px;color:var(--gold);white-space:nowrap;}
+
+  /* ===== FOOTER ===== */
+  .footer{
+    background:var(--ink);
+    color:var(--paper-bright);
+    padding:64px 0 40px;
+    text-align:center;
+  }
+  .footer h2{
+    font-family:var(--font-display);
+    font-size:clamp(30px,5vw,48px);
+    font-weight:600;
+    margin:0 0 18px;
+  }
+  .footer p{color:rgba(246,242,231,0.7);max-width:440px;margin:0 auto 30px;}
+  .cta{
+    display:inline-flex;
+    gap:10px;
+    align-items:center;
+    background:var(--gold);
+    color:var(--ink);
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.04em;
+    padding:14px 24px;
+    border-radius:3px;
+    text-decoration:none;
+    font-weight:500;
+    transition:transform 0.15s ease;
+  }
+  .cta:hover{transform:translateY(-2px);}
+  .footer-meta{
+    margin-top:44px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:rgba(246,242,231,0.45);
+  }
+
+  @media (max-width:640px){
+    .hero{padding:44px 0 56px;}
+    .hero-top{flex-direction:column;}
+    .stamp{width:104px;height:104px;font-size:10px;}
+    .route{flex-direction:column;gap:22px;}
+    .route::before{display:none;}
+    .entry{grid-template-columns:1fr;gap:8px;}
+    .section{padding:40px 0;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .cta{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow">Dossier de candidature — Business International</div>
+        <h1>Louis<br><em>Franvel</em></h1>
+        <p class="hero-tagline">Développement commercial &amp; commerce international. Actuellement en immersion sur les flux import/export du marché Saint-Charles, en route vers un MSc International Business Management.</p>
+      </div>
+      <div class="stamp">DISPONIBLE<br>ALTERNANCE<br>OCT. 2026</div>
+    </div>
+    <div class="hero-contact">
+      <a href="mailto:lfranvel@gmail.com">lfranvel@gmail.com</a>
+      <a href="tel:+33782709967">07 82 70 99 67</a>
+      <span>Paris / Bordeaux</span>
+      <span>Permis B &amp; véhiculé</span>
+    </div>
+  </div>
+</header>
+
+<section class="route-section">
+  <div class="wrap">
+    <div class="route-label">Feuille de route — dernières escales</div>
+    <div class="route">
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <div class="route-city">Bordeaux</div>
+        <div class="route-role">IUT · BUT Techniques de Commercialisation</div>
+        <div class="route-date">2022 — 2025</div>
+      </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <div class="route-city">Chancelade</div>
+        <div class="route-role">Mobalpa · Alternance</div>
+        <div class="route-date">09/2024 — 08/2025</div>
+      </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <div class="route-city">Paris</div>
+        <div class="route-role">UPS France · Stage</div>
+        <div class="route-date">11/2025 — 01/2026</div>
+      </div>
+      <div class="route-stop current">
+        <div class="route-dot"></div>
+        <div class="route-city">Perpignan</div>
+        <div class="route-role">Berry Select · Assistant Import</div>
+        <div class="route-date">01/2026 — 08/2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Expériences</h2>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="co">Berry Select</span>
+        Perpignan · Saint-Charles<br>01/2026 — 08/2026
+      </div>
+      <div>
+        <p class="entry-role">Assistant Import</p>
+        <ul>
+          <li>Coordination logistique des flux import/export sur le marché international de Saint-Charles</li>
+          <li>Contrôle qualité des arrivages (Maroc, Espagne, Portugal, Amérique latine)</li>
+          <li>Maîtrise d'outils ERP en environnement hispanophone</li>
+          <li>Développement commercial B2B au sein de la filière française</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="co">UPS France</span>
+        Paris · Stage<br>11/2025 — 01/2026
+      </div>
+      <div>
+        <p class="entry-role">Chargé d'Acquisition Client</p>
+        <ul>
+          <li>Traitement et génération de la demande entrante (leads)</li>
+          <li>Co-création de campagnes marketing à l'échelle Europe</li>
+          <li>Préparation d'animations commerciales nationales et ciblage</li>
+          <li>Suivi et analyse des données commerciales</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="co">Mobalpa</span>
+        Chancelade · Alternance<br>09/2024 — 08/2025
+      </div>
+      <div>
+        <p class="entry-role">Assistant Administratif et Financier</p>
+        <ul>
+          <li>Gestion back-office et suivi administratif de plus de 200 dossiers clients</li>
+          <li>Optimisation de la rentabilité et réduction des charges internes</li>
+          <li>Soutien à la communication interne et aux réseaux sociaux</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="co">PFI</span>
+        Notre-Dame-de-Sanilhac · Stage<br>04/2024 — 06/2024
+      </div>
+      <div>
+        <p class="entry-role">Assistant Achat &amp; Export</p>
+        <ul>
+          <li>Organisation logistique des importations et suivi des commandes internationales</li>
+          <li>Prospection B2B par emailing et phoning</li>
+          <li>Négociation directe auprès de fournisseurs étrangers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="co">Congrès de l'Apliut</span>
+        IUT de Bordeaux<br>06/2023
+      </div>
+      <div>
+        <p class="entry-role">Organisation événementielle</p>
+        <ul>
+          <li>Accueil et accompagnement des participants, coordination d'équipe</li>
+          <li>Gestion de la logistique : planning, inscriptions, matériel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="competences">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Compétences</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Langues</h3>
+        <div class="lang-row"><span>Anglais</span><span>Certifié Linguaskill B2</span></div>
+        <div class="bar"><div class="bar-fill" style="width:72%"></div></div>
+        <div class="lang-row" style="margin-top:16px;"><span>Espagnol</span><span>Avancé — DELE B2/C1</span></div>
+        <div class="bar"><div class="bar-fill gold" style="width:85%"></div></div>
+        <p class="skill-note">Espagnol pratiqué au quotidien chez Berry Select, en environnement ERP hispanophone avec des fournisseurs ibériques et latino-américains.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Bureautique</h3>
+        <div class="tag-list">
+          <span class="tag">Word</span>
+          <span class="tag">Excel</span>
+          <span class="tag">PowerPoint</span>
+        </div>
+        <p class="skill-note">Suivi de dossiers clients, tableaux de bord commerciaux et supports de présentation au quotidien depuis 2024.</p>
+      </div>
+      <div class="skill-card">
+        <h3>CRM &amp; ERP</h3>
+        <div class="tag-list">
+          <span class="tag">Osiris</span>
+          <span class="tag">Hubspot</span>
+          <span class="tag">Brevo</span>
+          <span class="tag">Hispatec</span>
+        </div>
+        <p class="skill-note">Osiris (Mobalpa), Hubspot &amp; Brevo (campagnes UPS France), Hispatec (flux import Berry Select).</p>
+      </div>
+      <div class="skill-card">
+        <h3>Terrain &amp; commerce</h3>
+        <div class="tag-list">
+          <span class="tag">Permis B &amp; véhiculé</span>
+          <span class="tag">Négociation fournisseurs</span>
+          <span class="tag">Prospection B2B</span>
+          <span class="tag">Contrôle qualité import</span>
+          <span class="tag">Coordination d'équipe</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="formation">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Formation</h2>
+    </div>
+
+    <div class="edu">
+      <div>
+        <div class="edu-title">MSc International Business Management</div>
+        <div class="edu-sub">INSEEC Bordeaux · Rythme d'alternance : 3 semaines entreprise / 1 semaine formation</div>
+      </div>
+      <div class="edu-date">2026 — 2028</div>
+    </div>
+    <div class="edu">
+      <div>
+        <div class="edu-title">Licence BUT Techniques de Commercialisation</div>
+        <div class="edu-sub">IUT de Bordeaux · Parcours Business Development &amp; Management de la Relation Client</div>
+      </div>
+      <div class="edu-date">2022 — 2025</div>
+    </div>
+    <div class="edu">
+      <div>
+        <div class="edu-title">Baccalauréat général, mention très bien</div>
+        <div class="edu-sub">Lycée Jay de Beaufort, Périgueux · Spécialités HGGSP, LLCER Espagnol, Mathématiques</div>
+      </div>
+      <div class="edu-date">2019 — 2022</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="interets">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Centres d'intérêt</h2>
+    </div>
+    <div class="interests-grid">
+      <div class="interest-card">
+        <span class="interest-icon">Sport</span>
+        <h3>Tennis &amp; course à pied</h3>
+        <p>Licencié en club à Bordeaux depuis 12 ans. Pratiquant de semi-marathons à travers l'Europe — goût de l'endurance, de la préparation et du dépassement de soi.</p>
+      </div>
+      <div class="interest-card">
+        <span class="interest-icon">Culture</span>
+        <h3>Cinéma</h3>
+        <p>Critique cinématographique amateur : regard analytique et curiosité pour la narration, appliqués en dehors du cadre professionnel.</p>
+      </div>
+      <div class="interest-card">
+        <span class="interest-icon">Passion</span>
+        <h3>Football</h3>
+        <p>Passionné de football et d'analyse footballistique — suivi des dynamiques d'équipe et de la performance, un prisme qui rejoint l'esprit d'analyse commerciale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <h2>Prêt pour la prochaine escale.</h2>
+    <p>À la recherche d'une alternance en développement commercial et business international à partir d'octobre 2026.</p>
+    <a class="cta" href="mailto:lfranvel@gmail.com">Écrire à Louis →</a>
+    <div class="footer-meta">LOUIS FRANVEL — 30 ROUTE DU ROYER, 24460 CHÂTEAU L'ÉVÊQUE</div>
+  </div>
+</footer>
+
+</body>
+</html>
